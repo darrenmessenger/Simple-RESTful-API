@@ -1,5 +1,5 @@
-const express = require('express'); // requre the express framework
-const app = express();
+const express = require('express'); // require the express framework
+const app = express(); //require Express framework
 const fs = require('fs'); //require file system object
 
 
@@ -9,6 +9,7 @@ app.get('/getPatient/:id', function (req, res) {
   let parsedData;
   let mergedJSON="";
 
+  // Read through each file in the directory so that they can be checked. 
   fs.readdir('C:/temp/Black_Pear_Software_Engineer_Challenge/Black_Pear_Software_Engineer_Challenge', (err, files) => {
       if (err) {
         console.error("Could not list the directory.", err);
@@ -29,6 +30,7 @@ app.get('/getPatient/:id', function (req, res) {
                     for (let i = 0; i < parsedData.name.length; i++) {
                       const name = parsedData.name[i];
                       familyName = name.family;
+                      // if the family name has been found then add it.
                       if(familyName.toUpperCase() == req.params.id.toUpperCase()){
                         mergedJSON = mergedJSON + JSON.stringify(parsedData);
                       }
@@ -37,6 +39,7 @@ app.get('/getPatient/:id', function (req, res) {
                   for (let i = 0; i < parsedData.identifier.length; i++) {
                     const identifier = parsedData.identifier[0];
                     nhsNumber = identifier.value;
+                    // if the NHS number has been found then add it.
                     if(nhsNumber == req.params.id){ 
                       mergedJSON = mergedJSON + JSON.stringify(parsedData);
                     }
@@ -44,7 +47,6 @@ app.get('/getPatient/:id', function (req, res) {
                 }
           }
       });
-      console.log(mergedJSON);
       if(mergedJSON == "" || typeof(mergedJSON)== "undefined") mergedJSON = "No Data Found";
       res.send(mergedJSON);
     });
@@ -56,6 +58,7 @@ app.get('/getObservations/:id', function (req, res) {
     let mergedJSON;
     let result="";
 
+    // Read through each file in the directory so that they can be checked. 
     fs.readdir('C:/temp/Black_Pear_Software_Engineer_Challenge/Black_Pear_Software_Engineer_Challenge', (err, files) => {
         if (err) {
           console.error("Could not list the directory.", err);
@@ -75,7 +78,8 @@ app.get('/getObservations/:id', function (req, res) {
                     
                     let str = "reference.Patient";
                     let splitStr = str.split('.');
-
+                    
+                    // search the string to extract the patient number
                     for(let str of splitStr) {
                       if(!result) break;
                       result = result[str]
@@ -83,13 +87,13 @@ app.get('/getObservations/:id', function (req, res) {
                       if(thenum>0) break;
                     }
 
+                    // if the patient observation has been found then add it.
                     if(thenum == req.params.id){
                       mergedJSON = mergedJSON + JSON.stringify(parsedData);
                     }
             }
         });
         if(mergedJSON == "" || typeof(mergedJSON)== "undefined") mergedJSON = "No Data Found";
-        console.log(mergedJSON);
         res.send(mergedJSON);
       });
   })
