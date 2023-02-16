@@ -26,14 +26,14 @@ I used the node:FS module to interact with the file system.
 
 ## Testing ##
 
-Use the Postman and the following requests to test the api:
+Use Postman and the following GET requests to test the api:
 
-http://localhost:8080/getPatient/smith //This should return the patient records with a Family Name of Smith.
-http://localhost:8080/getPatient/Jones //This should return "No Data Found" as the patient does not exist.
-http://localhost:8080/getPatient/1111111111 //This should return the patient records with an NHS number of 1111111111.
-http://localhost:8080/getPatient/1111111112 //This should return the patient records with an NHS number of 1111111112.
-http://localhost:8080/getPatient/1111111113 //This should return "No Data Found" as the patient does not exist.
-http://localhost:8080/getObservations/1 //This should return the observations for Patient/1
-http://localhost:8080/getObservations/2 //This should return the observations for Patient/2
-http://localhost:8080/getObservations/3 //This should return "No Data Found" as patient observations do not exist. 
+- http://localhost:8080/getPatient/smith //This should return the patient records with a Family Name of Smith.
+- http://localhost:8080/getPatient/Jones //This should return "No Data Found" as the patient does not exist.
+- http://localhost:8080/getPatient/1111111111 //This should return the patient records with an NHS number of 1111111111.
+- http://localhost:8080/getPatient/1111111112 //This should return the patient records with an NHS number of 1111111112.
+- http://localhost:8080/getPatient/1111111113 //This should return "No Data Found" as the patient does not exist.
+- http://localhost:8080/getObservations/1 //This should return the observations for Patient/1
+- http://localhost:8080/getObservations/2 //This should return the observations for Patient/2
+- http://localhost:8080/getObservations/3 //This should return "No Data Found" as patient observations do not exist. 
 
