@@ -44,6 +44,8 @@ app.get('/getPatient/:id', function (req, res) {
                 }
           }
       });
+      console.log(mergedJSON);
+      if(mergedJSON == "" || typeof(mergedJSON)== "undefined") mergedJSON = "No Data Found";
       res.send(mergedJSON);
     });
 })
@@ -86,6 +88,8 @@ app.get('/getObservations/:id', function (req, res) {
                     }
             }
         });
+        if(mergedJSON == "" || typeof(mergedJSON)== "undefined") mergedJSON = "No Data Found";
+        console.log(mergedJSON);
         res.send(mergedJSON);
       });
   })
